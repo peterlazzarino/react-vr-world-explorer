@@ -5,38 +5,62 @@ import {
     Sphere,
     View,
 } from 'react-vr';
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { startFullSpin, finishSpin } from "../../redux/modules/earth";
 
-export default class Earth extends React.Component{
+const mapStateToProps = (state, ownProps) => {
+    console.log(state.earthReducer);
+    return state.earthReducer;
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return bindActionCreators({ startFullSpin, finishSpin }, dispatch);
+}
+
+
+class Earth extends React.Component{
     constructor(props) {
         super(props);
+        this.spin = this.spin.bind(this);
+        this.fullSpin = this.fullSpin.bind(this);
         this.state = {
             bounceValue: new Animated.Value(0),
         };
     }
-    componentDidMount() {
-        this.state.bounceValue.setValue(0);    
-        Animated.timing(this.state.bounceValue, {
-            toValue: 360,     
-            duration: 5000                 
-        }).start();                                
+    componentWillReceiveProps(next){
+        if(!this.props.fullSpinRequested && next.fullSpinRequested){
+            this.props.startFullSpin();
+            this.state.bounceValue.setValue(0);    
+            this.fullSpin();
+        }
+    }
+    fullSpin(){
+        this.spin(360);
+    }
+    spin(to){
+        this.state.bounceValue.setValue(0);
+        Animated.spring(this.state.bounceValue, {
+            toValue: to,     
+            friction: 10,
+            tension: 4           
+        }).start();
+    }
+    componentDidMount() {    
+        this.spin(360)                              
     }
     render(){
         const earthSize = this.props.scale;
         return (
             <Animated.View style={{    
-                opacity: 1,
                 transform: [
-                    {translateY: this.state.bounceValue, translate: [0, 0, -3]},
+                    { translate: [0, -.5, -5]  }, 
+                    { rotateY: this.state.bounceValue}
                 ],
             }}>
                 <Sphere
                     lit={false}
                     wireframe={false}
-                    style={{
-                        height: earthSize / 2,
-                        width: earthSize / 2,
-                        transform: [{translate: [0, 0, -3]}],
-                    }}
                     texture={asset("earth.jpg")}
                     radius={earthSize}
                     widthSegments={40}
@@ -46,3 +70,7 @@ export default class Earth extends React.Component{
         )
     }
 }
+
+const EarthContainer = connect(mapStateToProps, mapDispatchToProps)(Earth);
+
+export default EarthContainer;
