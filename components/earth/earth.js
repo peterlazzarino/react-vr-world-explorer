@@ -5,6 +5,7 @@ import {
     Sphere,
     View,
 } from 'react-vr';
+import SpaceSphere from "../solar-system/spaceSphere";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { startFullSpin, finishSpin } from "../../redux/modules/earth";
@@ -42,7 +43,7 @@ class Earth extends React.Component{
         this.state.bounceValue.setValue(0);
         Animated.spring(this.state.bounceValue, {
             toValue: to,     
-            friction: 10,
+            friction: 10, 
             tension: 4           
         }).start();
     }
@@ -58,14 +59,7 @@ class Earth extends React.Component{
                     { rotateY: this.state.bounceValue}
                 ],
             }}>
-                <Sphere
-                    lit={false}
-                    wireframe={false}
-                    texture={asset("earth.jpg")}
-                    radius={earthSize}
-                    widthSegments={40}
-                    heightSegments={40}
-                />
+                <SpaceSphere wrap={asset("earth.jpg")} radius={earthSize} />                
             </Animated.View>
         )
     }
