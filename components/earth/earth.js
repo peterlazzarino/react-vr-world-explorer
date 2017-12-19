@@ -43,7 +43,7 @@ class Earth extends React.Component{
         this.state.bounceValue.setValue(0);
         Animated.spring(this.state.bounceValue, {
             toValue: to,     
-            friction: 10, 
+            friction: 15, 
             tension: 4           
         }).start();
     }
@@ -55,7 +55,7 @@ class Earth extends React.Component{
         return (
             <Animated.View style={{    
                 transform: [
-                    { translate: [0, -.5, -5]  }, 
+                    { translate: [0, -.5, -4]  }, 
                     { rotateY: this.state.bounceValue}
                 ],
             }}>

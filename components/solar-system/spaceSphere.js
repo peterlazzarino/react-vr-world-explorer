@@ -7,8 +7,6 @@ class SpaceSphere extends React.Component{
     render(){
         return (
             <Sphere
-                lit={false}
-                wireframe={false}
                 texture={this.props.wrap}
                 radius={this.props.radius}
                 widthSegments={40}
