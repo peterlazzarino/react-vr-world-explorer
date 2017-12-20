@@ -7,38 +7,47 @@ import {
 } from 'react-vr';
 
 export default class GazeAwareButton extends React.Component{
+
+	static defaultProps = {
+        selectTimeout: 500,
+        progressColor: "#46A032" 
+    };
+    
     constructor(props){
         super(props);
         this.onEnter = this.onEnter.bind(this);
         this.onExit = this.onExit.bind(this);
-        this.finalizeSelection = this.finalizeSelection.bind(this);
+        this.showProgress = this.showProgress.bind(this);
+        this.hideProgress = this.hideProgress.bind(this);
         this.interval;
-        this.animation;
-        this.maxViewWidth = props.buttonStyle.width || 1;
+        this.defaultHeight = .2;
+        this.defaultWidth = 1;
+        this.maxViewWidth = props.buttonStyle.width || this.defaultWidth;
         this.state = {
             gazeProgressMeter : new Animated.Value(0),
         }
+        this.animation = Animated.timing(this.state.gazeProgressMeter, {
+            toValue: this.maxViewWidth,     
+            duration: props.selectTimeout
+        });
     }
-    finalizeSelection(){
-        const { selectHandler } = this.props;
-        selectHandler();
+    showProgress(){
+        this.animation.start((anim) => {
+            const animLength = anim.finished ? 100 : 0;
+            this.hideProgress(animLength);
+        });
+    }
+    hideProgress(duration){
+        Animated.timing(this.state.gazeProgressMeter, {
+            toValue: 0,     
+            duration: duration
+        }).start();
     }
     onEnter(){
         const { selectTimeout } = this.props;
-        //use default props
-        const timeout = selectTimeout || 500;
-        this.interval = setTimeout(this.finalizeSelection, timeout);        
-        this.animation = Animated.timing(this.state.gazeProgressMeter, {
-            toValue: this.maxViewWidth,     
-            duration: timeout
-        });
-        this.animation.start((anim) => {
-            const animLength = anim.finished ? 100 : 0;
-            Animated.timing(this.state.gazeProgressMeter, {
-                toValue: 0,     
-                duration: animLength
-            }).start();            
-        });
+        const timeout = selectTimeout;
+        this.interval = setTimeout(this.selectHandler, timeout); 
+        this.showProgress();
     }
     onExit(){
         clearTimeout(this.interval);
@@ -46,8 +55,8 @@ export default class GazeAwareButton extends React.Component{
     }
     render(){
         const { buttonStyle, textStyle, text, selectHandler, progressColor, selectTimeout, isSelected } = this.props;
-        const buttonWidth = buttonStyle.width || 1;
-        const buttonHeight = buttonStyle.height || .2;
+        const buttonWidth = buttonStyle.width || this.defaultWidth;
+        const buttonHeight = buttonStyle.height || this.defaultHeight;
         const finalButtonStyle = Object.assign({}, buttonStyle, { width: buttonWidth, height: buttonHeight });
         return (
             <View>
@@ -55,14 +64,14 @@ export default class GazeAwareButton extends React.Component{
                     style={finalButtonStyle} 
                     onEnter={this.onEnter} 
                     onExit={this.onExit} 
-                    onClick={this.finalizeSelection}
+                    onClick={this.selectHandler}
                 >
                     <Animated.View style={{ 
                         width: this.state.gazeProgressMeter, 
                         position:"absolute", 
                         height: buttonHeight, 
                         opacity: .7,
-                        backgroundColor: progressColor || "#46A032" 
+                        backgroundColor: progressColor
                     }} />
                     <Text 
                         style={textStyle}
