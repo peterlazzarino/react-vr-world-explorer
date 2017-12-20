@@ -9,6 +9,7 @@ import {
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { fullSpin } from "../../redux/modules/earth";
+import GazeAwareButton from "../../components/buttons/gazeawarebutton";
 
 const mapStateToProps = (state, ownProps) => {
     return {};
@@ -50,18 +51,30 @@ class LeftNavigation extends React.Component{
                     ],
                 }}>
                     <Text style={{ marginBottom:.05 }}>Explore a country!</Text>
-                    <VrButton onClick={this.spinEarth} style={buttonStyle} > 
-                        <Text style={{color: "green" }}>Italy</Text>
-                    </VrButton>
-                    <VrButton onClick={this.spinEarth} style={buttonStyle} > 
-                        <Text style={{color: "green" }}>Greece</Text>
-                    </VrButton>
-                    <VrButton onClick={this.spinEarth} style={buttonStyle} > 
-                        <Text style={{color: "green" }}>Iceland</Text>
-                    </VrButton>
-                    <VrButton onClick={this.spinEarth} style={buttonStyle} > 
-                        <Text style={{color: "green" }}>United States</Text>
-                    </VrButton>
+                    <GazeAwareButton 
+                        text="Italy" 
+                        textStyle={{color: "green"}} 
+                        buttonStyle={buttonStyle}
+                        selectHandler={this.spinEarth} 
+                    /> 
+                    <GazeAwareButton 
+                        text="Greece" 
+                        textStyle={{color: "green"}} 
+                        buttonStyle={buttonStyle}
+                        selectHandler={this.spinEarth} 
+                    /> 
+                    <GazeAwareButton 
+                        text="Iceland" 
+                        textStyle={{color: "green"}} 
+                        buttonStyle={buttonStyle}
+                        selectHandler={this.spinEarth} 
+                    /> 
+                    <GazeAwareButton 
+                        text="United States" 
+                        textStyle={{color: "green"}} 
+                        buttonStyle={buttonStyle}
+                        selectHandler={this.spinEarth} 
+                    /> 
                 </View>
             </View>
         )

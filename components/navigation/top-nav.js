@@ -9,6 +9,7 @@ import {
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { fullSpin } from "../../redux/modules/earth";
+import GazeAwareButton from "../../components/buttons/gazeawarebutton";
 
 const mapStateToProps = (state, ownProps) => {
     return {};
@@ -35,9 +36,12 @@ class TopNavigation extends React.Component{
                     { rotateX : "20deg"}
                 ],
             }}>
-                <VrButton onClick={this.spinEarth} style={{ paddingHorizontal:.05, backgroundColor: "white" }} > 
-                    <Text style={{color: "green" }}>Free spin</Text>
-                </VrButton>
+                <GazeAwareButton 
+                    text="Free spin" 
+                    textStyle={{color: "green"}} 
+                    buttonStyle={{ paddingHorizontal:.05, backgroundColor: "white" }}
+                    selectHandler={this.spinEarth} 
+                /> 
             </View>
         )
     }
