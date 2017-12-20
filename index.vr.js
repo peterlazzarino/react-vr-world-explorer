@@ -22,7 +22,7 @@ export default class world_explorer extends React.Component {
         <View>
           <View>
             <Pano source={asset('star_bg.jpg')}/>
-            <Earth scale={1.5} lit={true}/>
+            <Earth scale={1.5} />
             <Nav />
           </View>
           <View style={{
@@ -33,11 +33,11 @@ export default class world_explorer extends React.Component {
           }}>
             <Moon />
           </View>
-          <DirectionalLight intensity={20} style={{ transform: [{ rotateZ: -35 }] }}/>
           <View style={{
             position:"absolute",
             transform: [{translate: [-3, -7, -1]}],
           }}>
+            <DirectionalLight intensity={5} style={{ transform: [{ rotateZ: -35 }] }}/>
             <Sun />
           </View>
         </View>
