@@ -19,7 +19,6 @@ export default class world_explorer extends React.Component {
     return (
       <Provider store={store}>
         <View>
-          <TopNavigation />
           <LeftNavigation />
           <View style={{ 
               transform: [

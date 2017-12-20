@@ -28,7 +28,7 @@ class LeftNavigation extends React.Component{
         this.props.fullSpin();
     }
     render(){
-        const buttonStyle = { paddingHorizontal:.05, width: 1, marginBottom:.05, backgroundColor: "white" };
+        const buttonStyle = { paddingHorizontal:.05, width: 1, height: .15, marginBottom:.05, backgroundColor: "white" };
         return (
             <View>
                 <View style={{    
@@ -53,25 +53,25 @@ class LeftNavigation extends React.Component{
                     <Text style={{ marginBottom:.05 }}>Explore a country!</Text>
                     <GazeAwareButton 
                         text="Italy" 
-                        textStyle={{color: "green"}} 
+                        textStyle={{color: "black"}} 
                         buttonStyle={buttonStyle}
                         selectHandler={this.spinEarth} 
                     /> 
                     <GazeAwareButton 
                         text="Greece" 
-                        textStyle={{color: "green"}} 
+                        textStyle={{color: "black"}} 
                         buttonStyle={buttonStyle}
                         selectHandler={this.spinEarth} 
                     /> 
                     <GazeAwareButton 
                         text="Iceland" 
-                        textStyle={{color: "green"}} 
+                        textStyle={{color: "black"}} 
                         buttonStyle={buttonStyle}
                         selectHandler={this.spinEarth} 
                     /> 
                     <GazeAwareButton 
                         text="United States" 
-                        textStyle={{color: "green"}} 
+                        textStyle={{color: "black"}} 
                         buttonStyle={buttonStyle}
                         selectHandler={this.spinEarth} 
                     /> 

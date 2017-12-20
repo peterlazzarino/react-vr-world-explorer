@@ -31,15 +31,16 @@ class TopNavigation extends React.Component{
         return (
             <View style={{    
                 position:"absolute",
+                padding: .05,
                 transform: [
                     { translate: [-.25, 1, -3]  },
                     { rotateX : "20deg"}
                 ],
             }}>
                 <GazeAwareButton 
-                    text="Free spin" 
-                    textStyle={{color: "green"}} 
-                    buttonStyle={{ paddingHorizontal:.05, backgroundColor: "white" }}
+                    text="Free spin!" 
+                    textStyle={{color: "black"}} 
+                    buttonStyle={{ backgroundColor: "white" }}
                     selectHandler={this.spinEarth} 
                 /> 
             </View>
