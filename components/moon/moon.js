@@ -9,7 +9,6 @@ import Orbiter from "../solar-system/orbiter";
 
 class Moon extends React.Component{
     render(){
-        const earthSize = this.props.scale;
         return (
             <Animated.View style={{   
                 position:"absolute", 

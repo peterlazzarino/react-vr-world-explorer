@@ -31,7 +31,8 @@ class Navigation extends React.Component{
             <View style={{    
                 position:"absolute",
                 transform: [
-                    { translate: [-.43, 1, -3]  }
+                    { translate: [-.43, .8, -2]  },
+                    { rotateX : "20deg"}
                 ],
             }}>
                 <VrButton onClick={this.spinEarth} style={{ paddingHorizontal:.05, backgroundColor: "white" }} > 
