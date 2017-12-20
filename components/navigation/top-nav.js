@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return bindActionCreators({ fullSpin }, dispatch);
 }
 
-class Navigation extends React.Component{
+class TopNavigation extends React.Component{
     constructor(props) {
         super(props);
         this.spinEarth = this.spinEarth.bind(this);
@@ -31,18 +31,18 @@ class Navigation extends React.Component{
             <View style={{    
                 position:"absolute",
                 transform: [
-                    { translate: [-.43, .8, -2]  },
+                    { translate: [-.25, 1, -3]  },
                     { rotateX : "20deg"}
                 ],
             }}>
                 <VrButton onClick={this.spinEarth} style={{ paddingHorizontal:.05, backgroundColor: "white" }} > 
-                    <Text style={{color: "green" }}>Take me for a spin!</Text>
+                    <Text style={{color: "green" }}>Free spin</Text>
                 </VrButton>
             </View>
         )
     }
 }
 
-const NavigationContainer = connect(mapStateToProps, mapDispatchToProps)(Navigation);
+const NavigationContainer = connect(mapStateToProps, mapDispatchToProps)(TopNavigation);
 
 export default NavigationContainer;
