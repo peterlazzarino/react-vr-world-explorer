@@ -29,19 +29,19 @@ class TopNavigation extends React.Component{
     }
     render(){
         return (
-            <View style={{    
+            <View style={{
                 position:"absolute",
                 transform: [
                     { translate: [-.25, 1, -3]  },
                     { rotateX : "20deg"}
                 ],
             }}>
-                <GazeAwareButton 
-                    text="Free spin" 
-                    textStyle={{color: "green"}} 
+                <GazeAwareButton
+                    text="Free spin"
+                    textStyle={{color: "green"}}
                     buttonStyle={{ paddingHorizontal:.05, backgroundColor: "white" }}
-                    selectHandler={this.spinEarth} 
-                /> 
+                    selectHandler={this.spinEarth}
+                />
             </View>
         )
     }
