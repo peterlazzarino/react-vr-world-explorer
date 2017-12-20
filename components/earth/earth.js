@@ -55,7 +55,6 @@ class Earth extends React.Component{
         return (
             <Animated.View style={{
                 transform: [
-                    { translate: [0, -.5, -4]  },
                     { rotateY: this.state.bounceValue}
                 ],
             }}>

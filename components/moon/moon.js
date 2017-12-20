@@ -12,9 +12,6 @@ class Moon extends React.Component{
         return (
             <Animated.View style={{   
                 position:"absolute", 
-                transform: [
-                    { translate: [10, 10, 10]  }
-                ],
             }}>
                 <Orbiter src={"moon.jpg"} size={2} />
             </Animated.View>

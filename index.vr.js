@@ -12,7 +12,8 @@ import { Provider } from "react-redux";
 import Earth from "./components/earth/earth";
 import Sun from "./components/sun/sun";
 import Moon from "./components/moon/moon";
-import Nav from "./components/navigation/nav";
+import TopNavigation from "./components/navigation/top-nav";
+import LeftNavigation from "./components/navigation/left-nav";
 import store from "./redux/store";
 
 export default class world_explorer extends React.Component {
@@ -20,17 +21,15 @@ export default class world_explorer extends React.Component {
     return (
       <Provider store={store}>
         <View>
-          <View>
-            <Pano source={asset('star_bg.jpg')}/>
-            <Earth scale={1.5} />
-            <Nav />
-          </View>
+          <TopNavigation />
+          <LeftNavigation />
           <View style={{
-              position:"absolute",
               transform: [
-                { translate: [-5, -5, -5]  }
+                { translate: [0, 0, -6]  }
               ]
           }}>
+            <Pano source={asset('star_bg.jpg')}/>
+            <Earth scale={1.5} />
             <Moon />
           </View>
           <View style={{

@@ -1,9 +1,11 @@
 import React from "react";
 import {
+    View,
     Sphere,
     asset,
     Animated
 } from 'react-vr';
+import { Easing } from 'react-native';
 import SpaceSphere from "./spaceSphere"
 
 class Orbiter extends React.Component{
@@ -15,29 +17,41 @@ class Orbiter extends React.Component{
         };
     }
     spin(to){
-        this.state.bounceValue.setValue(120);
+        this.state.bounceValue.setValue(0);
         Animated.timing(this.state.bounceValue, {
             toValue: to,     
-            duration: 200000
-        }).start();
+            duration: 200000,
+            easing: Easing.linear
+        }).start((o) => {
+            if(o.finished){
+                this.spin(to);
+            }
+        });
     }
     componentDidMount() {    
         this.spin(360)                              
     }
     render(){
-        return (            
-            <Animated.View style={{    
+        return (          
+            <View style={{    
                 position:"absolute",
                 transform: [
-                    { rotateY: this.state.bounceValue},
-                    { translate: [0, 0, 90]  }, 
+                    { rotateX: "20deg"}
                 ]                
             }}>
-                <SpaceSphere 
-                    wrap={asset(this.props.src)} 
-                    radius={this.props.size} 
-                />
-            </Animated.View>   
+                <Animated.View style={{    
+                    position:"absolute",
+                    transform: [
+                        { rotateY: this.state.bounceValue},
+                        { translate: [0, 0, 90]  }, 
+                    ]                
+                }}>
+                    <SpaceSphere 
+                        wrap={asset(this.props.src)} 
+                        radius={this.props.size} 
+                    />
+                </Animated.View>   
+            </View>
         )
     }
 }
