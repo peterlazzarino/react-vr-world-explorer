@@ -32,7 +32,7 @@ class Earth extends React.Component{
     componentWillReceiveProps(next){
         if(!this.props.fullSpinRequested && next.fullSpinRequested){
             this.props.startFullSpin();
-            this.state.bounceValue.setValue(0);    
+            this.state.bounceValue.setValue(0);
             this.fullSpin();
         }
     }
@@ -42,23 +42,23 @@ class Earth extends React.Component{
     spin(to){
         this.state.bounceValue.setValue(0);
         Animated.spring(this.state.bounceValue, {
-            toValue: to,     
-            friction: 15, 
-            tension: 4           
+            toValue: to,
+            friction: 15,
+            tension: 4
         }).start();
     }
-    componentDidMount() {    
-        this.spin(360)                              
+    componentDidMount() {
+        this.spin(360)
     }
     render(){
         const earthSize = this.props.scale;
         return (
-            <Animated.View style={{    
+            <Animated.View style={{
                 transform: [
                     { rotateY: this.state.bounceValue}
                 ],
             }}>
-                <SpaceSphere wrap={asset("earth.jpg")} radius={earthSize} />                
+                <SpaceSphere wrap={asset("earth.jpg")} radius={earthSize} lit={true}/>
             </Animated.View>
         )
     }

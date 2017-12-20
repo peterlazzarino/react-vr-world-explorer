@@ -29,7 +29,7 @@ class TopNavigation extends React.Component{
     }
     render(){
         return (
-            <View style={{    
+            <View style={{
                 position:"absolute",
                 padding: .05,
                 transform: [
@@ -37,12 +37,12 @@ class TopNavigation extends React.Component{
                     { rotateX : "20deg"}
                 ],
             }}>
-                <GazeAwareButton 
+                <GazeAwareButton
                     text="Free spin!" 
                     textStyle={{color: "black"}} 
                     buttonStyle={{ backgroundColor: "white" }}
-                    selectHandler={this.spinEarth} 
-                /> 
+                    selectHandler={this.spinEarth}
+                />
             </View>
         )
     }
