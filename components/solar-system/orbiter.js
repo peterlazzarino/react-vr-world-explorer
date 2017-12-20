@@ -5,6 +5,7 @@ import {
     asset,
     Animated
 } from 'react-vr';
+import { Easing } from 'react-native';
 import SpaceSphere from "./spaceSphere"
 
 class Orbiter extends React.Component{
@@ -16,11 +17,16 @@ class Orbiter extends React.Component{
         };
     }
     spin(to){
-        this.state.bounceValue.setValue(120);
+        this.state.bounceValue.setValue(0);
         Animated.timing(this.state.bounceValue, {
             toValue: to,     
-            duration: 200000
-        }).start();
+            duration: 200000,
+            easing: Easing.linear
+        }).start((o) => {
+            if(o.finished){
+                this.spin(to);
+            }
+        });
     }
     componentDidMount() {    
         this.spin(360)                              
