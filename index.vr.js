@@ -4,7 +4,8 @@ import {
   asset,
   Pano,
   Text,
-  DirectionalLight,
+  PointLight,
+  AmbientLight,
   Sphere,
   View,
 } from 'react-vr';
@@ -25,7 +26,7 @@ export default class world_explorer extends React.Component {
           <LeftNavigation />
           <View style={{
               transform: [
-                { translate: [0, 0, -6]  }
+                { translate: [0, -.2, -6]  }
               ]
           }}>
             <Pano source={asset('star_bg.jpg')}/>
@@ -34,9 +35,10 @@ export default class world_explorer extends React.Component {
           </View>
           <View style={{
             position:"absolute",
-            transform: [{translate: [-3, -7, -1]}],
+            transform: [{translate: [-125, -20, 205]}],
           }}>
-            <DirectionalLight intensity={5} style={{ transform: [{ rotateZ: -35 }] }}/>
+            <PointLight distance={10000} intensity={5.5} decay={100} />
+            <AmbientLight intensity={.9} decay={100} />
             <Sun />
           </View>
         </View>
