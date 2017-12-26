@@ -53,7 +53,6 @@ class LeftNavigation extends React.Component{
                 }}>
                     <Text style={{ marginBottom:.05 }}>Explore a country!</Text>                    
                     {this.props.locations.map((location) => {
-                        console.log(location.name)
                             return (
                                 <GazeAwareButton 
                                     text={location.name}
