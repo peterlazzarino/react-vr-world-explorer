@@ -3,6 +3,7 @@ import {
     View,
     Text
 } from 'react-vr';
+import EarthSpin from "../solar-system/earthSpin";
 
 export default class Overlay extends React.Component{
     constructor(){
@@ -25,15 +26,17 @@ export default class Overlay extends React.Component{
         const destinationTransform = this.to3dLocation(1.2921, 36.8219);
         console.log(destinationTransform);
         return (
-            <View style={{
-                position:"absolute",
-            }}>
-                <Text style={{
-                    transform: [{ 
-                        translate: destinationTransform  }
-                    ]
-                }}>Nairobe</Text>
-            </View>
+            <EarthSpin>
+                <View style={{
+                    position:"absolute"
+                }}>
+                    <Text style={{
+                        transform: [{ 
+                            translate: destinationTransform  }
+                        ]
+                    }}>X</Text>
+                </View>
+            </EarthSpin>
         )
     }
 } 
