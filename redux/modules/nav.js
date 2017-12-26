@@ -12,7 +12,7 @@ const initialState = {
     },{
         name: "Antarctica",
         coordinates: { lat: -82.8628, lon: -135.0000 }
-    },]
+    }]
 }
 
 export default function navReducer(state = initialState, action) { 
