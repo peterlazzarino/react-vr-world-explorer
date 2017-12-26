@@ -1,8 +1,10 @@
 import earthReducer from "./modules/earth";
+import navReducer from "./modules/nav";
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
 const reducers = {
-    earthReducer: earthReducer
+    earthReducer: earthReducer,
+    navReducer: navReducer
 }
 
 const composeEnhancers = (process.env.NODE_ENV !== 'production' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;

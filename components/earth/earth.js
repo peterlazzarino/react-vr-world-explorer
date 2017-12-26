@@ -8,57 +8,61 @@ import {
 import SpaceSphere from "../solar-system/spaceSphere";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { startFullSpin, finishSpin } from "../../redux/modules/earth";
+import { spinTo, startFullSpin } from "../../redux/modules/earth";
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(state.earthReducer);
     return state.earthReducer;
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    return bindActionCreators({ startFullSpin, finishSpin }, dispatch);
+    return bindActionCreators({ spinTo, startFullSpin }, dispatch);
 }
-
 
 class Earth extends React.Component{
     constructor(props) {
         super(props);
         this.spin = this.spin.bind(this);
-        this.fullSpin = this.fullSpin.bind(this);
+        this.primeMeridianOffset = 270;
+        this.equatorOffset = 0;
         this.state = {
-            bounceValue: new Animated.Value(0),
+            bounceXValue: new Animated.Value(this.primeMeridianOffset),
+            bounceYValue: new Animated.Value(this.equatorOffset),
         };
+    }
+    mapLatitude(lat){
+        return lat + this.equatorOffset;
+    }
+    mapLongitude(lon){
+        return lon + this.primeMeridianOffset;
     }
     componentWillReceiveProps(next){
         if(!this.props.fullSpinRequested && next.fullSpinRequested){
             this.props.startFullSpin();
-            this.state.bounceValue.setValue(0);
-            this.fullSpin();
+            this.spin(this.mapLatitude(next.spinLocation.lat), this.mapLongitude(next.spinLocation.lon));
         }
     }
-    fullSpin(){
-        this.spin(360);
-    }
-    spin(to){
-        this.state.bounceValue.setValue(0);
-        Animated.spring(this.state.bounceValue, {
-            toValue: to,
+    spin(lat, lon){
+        console.log(lat + " " + lon)
+        Animated.spring(this.state.bounceXValue, {
+            toValue: lon,
             friction: 15,
             tension: 4
         }).start();
-    }
-    componentDidMount() {
-        this.spin(360)
-    }
+        Animated.spring(this.state.bounceYValue, {
+            toValue: lat,
+            friction: 15,
+            tension: 4
+        }).start();
+    }    
     render(){
-        const earthSize = this.props.scale;
         return (
             <Animated.View style={{
                 transform: [
-                    { rotateY: this.state.bounceValue}
+                    { rotateX: this.state.bounceYValue},
+                    { rotateY: this.state.bounceXValue}
                 ],
             }}>
-                <SpaceSphere wrap={asset("earth.jpg")} radius={earthSize} lit={true}/>
+                <SpaceSphere wrap={asset("earth.jpg")} radius={this.props.scale} lit={true}/>
             </Animated.View>
         )
     }

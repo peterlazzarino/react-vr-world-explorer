@@ -13,7 +13,6 @@ import { Provider } from "react-redux";
 import Earth from "./components/earth/earth";
 import Sun from "./components/sun/sun";
 import Moon from "./components/moon/moon";
-import TopNavigation from "./components/navigation/top-nav";
 import LeftNavigation from "./components/navigation/left-nav";
 import store from "./redux/store";
 

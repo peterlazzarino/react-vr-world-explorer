@@ -1,39 +1,43 @@
 const ActionType = {
-    REQUEST_RANDOM_SPIN: 'REQUEST_RANDOM_SPIN',
-    START_RANDOM_SPIN: 'START_RANDOM_SPIN',
+    SPIN_TO: 'SPIN_TO',
+    START_SPIN: 'START_SPIN',
     FINISH_SPIN: 'FINISH_SPIN'
 }
 
 const initialState = {
     isSpinning: false,
-    fullSpinRequested: false
+    fullSpinRequested: false,
+    spinLocation: undefined
 }
 
 export default function earthReducer(state = initialState, action) { 
     switch(action.type){
-        case ActionType.REQUEST_RANDOM_SPIN:
+        case ActionType.SPIN_TO:
             return Object.assign({}, state, {
                 isSpinning: false,
-                fullSpinRequested: true
+                fullSpinRequested: true,
+                spinLocation: action.data
             });
-        case ActionType.START_RANDOM_SPIN:
+        case ActionType.START_SPIN:
             return Object.assign({}, state, {
                 isSpinning: true,
-                fullSpinRequested: false
+                fullSpinRequested: false,
+                spinLocation: undefined
             });
         default: 
             return state;
     }
 }
 
-export const fullSpin = () => {
+export const spinTo = (location) => {
     return {
-        type: ActionType.REQUEST_RANDOM_SPIN
+        type: ActionType.SPIN_TO,
+        data: location
     }
 }
 
 export const startFullSpin = () => {
     return {
-        type: ActionType.START_RANDOM_SPIN
+        type: ActionType.START_SPIN
     }
 }
