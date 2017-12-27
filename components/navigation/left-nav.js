@@ -40,7 +40,7 @@ class LeftNavigation extends React.Component{
                     paddingBottom: .6,
                     opacity:.5,
                     transform: [
-                        { translate: [-2, .6, -3.01]  },
+                        { translate: [-2.5, .6, -3.01]  },
                     ],
                 }}>
                 </View>
@@ -48,7 +48,7 @@ class LeftNavigation extends React.Component{
                     position:"absolute",
                     padding: .05,
                     transform: [
-                        { translate: [-2, .6, -3]  },
+                        { translate: [-2.5, .6, -3]  },
                     ], 
                 }}>
                     <Text style={{ marginBottom:.05 }}>Explore a country!</Text>                    

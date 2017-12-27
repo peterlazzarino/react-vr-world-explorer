@@ -7,8 +7,8 @@ const initialState = {
         name: "United States",
         coordinates: { lat: 37.0902, lon: 95.7129 }
     },{
-        name: "Peru",
-        coordinates: { lat: -9.1900, lon: 75.0152 }
+        name: "Italy",
+        coordinates: { lat: 41.8719, lon: -12.5674 }
     },{
         name: "Antarctica",
         coordinates: { lat: -82.8628, lon: -135.0000 }

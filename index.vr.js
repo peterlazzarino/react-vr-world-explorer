@@ -25,7 +25,7 @@ export default class world_explorer extends React.Component {
           <LeftNavigation />
           <View style={{
               transform: [
-                { translate: [0, -.2, -6]  }
+                { translate: [0, -.2, -4]  }
               ]
           }}>
             <Pano source={asset('star_bg.jpg')}/>

@@ -15,7 +15,7 @@ function init(bundle, parent, options) {
   };
   // Begin the animation loop
   vr.start();
-  return vr;
+  return vr;  
 }
 
 window.ReactVR = {init};
