@@ -1,7 +1,8 @@
 import React from "react";
 import {
     View,
-    Text
+    Text,
+    Sphere
 } from 'react-vr';
 import EarthSpin from "../solar-system/earthSpin";
 
@@ -11,6 +12,7 @@ export default class Overlay extends React.Component{
         this.to3dLocation = this.to3dLocation.bind(this);
     }
     to3dLocation(lat, lon){
+        lon = lon + 90;
         const rad = this.props.sphereRadius;
         var cosLat = Math.cos(lat * Math.PI / 180.0);
         var sinLat = Math.sin(lat * Math.PI / 180.0);
@@ -23,18 +25,40 @@ export default class Overlay extends React.Component{
         ];
     }
     render(){
-        const destinationTransform = this.to3dLocation(1.2921, 36.8219);
-        console.log(destinationTransform);
+        const nairobeCoords = this.to3dLocation(-1.2921, 36.8221);
+        const newYorkCoords = this.to3dLocation(40.7128, -74.0060);
+        const romeCoords = this.to3dLocation(41.9128, 12.4964);
         return (
             <EarthSpin>
                 <View style={{
                     position:"absolute"
                 }}>
-                    <Text style={{
-                        transform: [{ 
-                            translate: destinationTransform  }
+                    <Sphere radius={.02} style={{
+                        color:"red",
+                        transform: [
+                            {  translate: nairobeCoords  }
                         ]
-                    }}>X</Text>
+                    }}/>
+                </View>
+                <View style={{
+                    position:"absolute"
+                }}>
+                    <Sphere radius={.02} style={{
+                        color:"red",
+                        transform: [
+                            {  translate: newYorkCoords  }
+                        ]
+                    }} />
+                </View>
+                <View style={{
+                    position:"absolute"
+                }}>
+                    <Sphere radius={.02} style={{
+                        color:"red",
+                        transform: [
+                            {  translate: romeCoords  }
+                        ]
+                    }} />
                 </View>
             </EarthSpin>
         )

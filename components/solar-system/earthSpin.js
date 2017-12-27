@@ -20,8 +20,8 @@ class EarthSpin extends React.Component{
     constructor(props) {
         super(props);
         this.spin = this.spin.bind(this);
-        this.primeMeridianOffset = 270;
-        this.equatorOffset = 0;
+        this.primeMeridianOffset = this.props.xOffset || 0;
+        this.equatorOffset = this.props.yOffset || 0;
         this.state = {
             bounceXValue: new Animated.Value(this.primeMeridianOffset),
             bounceYValue: new Animated.Value(this.equatorOffset),

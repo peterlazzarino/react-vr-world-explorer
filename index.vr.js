@@ -13,7 +13,6 @@ import { Provider } from "react-redux";
 import Earth from "./components/earth/earth";
 import Sun from "./components/sun/sun";
 import Moon from "./components/moon/moon";
-import DestinationOverlay from "./components/destinations/overlay"
 import LeftNavigation from "./components/navigation/left-nav";
 import store from "./redux/store";
 
@@ -31,7 +30,6 @@ export default class world_explorer extends React.Component {
           }}>
             <Pano source={asset('star_bg.jpg')}/>
             <Earth scale={earthRadius} />
-            <DestinationOverlay sphereRadius={earthRadius} />
             <Moon />
           </View>
           <View style={{
