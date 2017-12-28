@@ -5,7 +5,6 @@ import {
     Sphere
 } from 'react-vr';
 import { connect } from "react-redux";
-import EarthSpin from "../solar-system/earthSpin";
 
 const mapStateToProps = (state, ownProps) => {
     return state.navReducer;
@@ -31,6 +30,9 @@ class Overlay extends React.Component{
             rad * cosLat * cosLon
         ];
     }
+    getYRotationForLocation(location){
+        return location.coordinates.lon + 90;
+    }
     render(){   
         const { tours } = this.props;     
         if(!tours || tours.length < 1){
@@ -38,7 +40,7 @@ class Overlay extends React.Component{
         }
         const firstTour = tours[0];
         return (
-            <EarthSpin>
+            <View>
                 {firstTour.locations.map((location, idx) => {
                     return (
                         <View key={`${location.location}-${idx}`} style={{
@@ -47,14 +49,17 @@ class Overlay extends React.Component{
                                 {  translate: this.to3dLocation(location.coordinates) }
                             ]
                         }}> 
-                            <Sphere radius={.004} style={{
-                                color:"white"                                
+                            <Sphere radius={.008} heightSegments={15} widthSegments={15} style={{
+                                color:"yellow"                                
                             }} />
                             <Text style={{
+                                textAlign: "center", backgroundColor: '#777879',
+                                fontWeight: "400",
+                                color:"white",
                                 position:"absolute",
                                 fontSize: .05,
                                 transform: [{
-                                    rotateY: 100,
+                                    rotateY: this.getYRotationForLocation(location),
                                 }, {
                                     rotateX: -50
                                 }, {
@@ -68,7 +73,7 @@ class Overlay extends React.Component{
                         </View>
                     )
                 })}
-            </EarthSpin>
+            </View>
         )
     }
 } 
