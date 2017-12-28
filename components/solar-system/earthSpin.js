@@ -4,16 +4,10 @@ import {
     Sphere,
     View,
 } from 'react-vr';
-import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { spinTo, startFullSpin } from "../../redux/modules/earth";
 
 const mapStateToProps = (state, ownProps) => {
-    return state.earthReducer;
-}
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return bindActionCreators({ spinTo, startFullSpin }, dispatch);
+    return state.navReducer;
 }
 
 class EarthSpin extends React.Component{
@@ -34,9 +28,8 @@ class EarthSpin extends React.Component{
         return lon + this.primeMeridianOffset;
     }
     componentWillReceiveProps(next){
-        if(!this.props.fullSpinRequested && next.fullSpinRequested){
-            this.props.startFullSpin();
-            this.spin(this.mapLatitude(next.spinLocation.lat), this.mapLongitude(next.spinLocation.lon));
+        if(this.props.selectedLocation != next.selectedLocation){
+            this.spin(this.mapLatitude(next.selectedLocation.coordinates.lat), this.mapLongitude(next.selectedLocation.coordinates.lon));
         }
     }
     spin(lat, lon){
@@ -65,6 +58,6 @@ class EarthSpin extends React.Component{
     }
 }
 
-const EarthSpinContainer = connect(mapStateToProps, mapDispatchToProps)(EarthSpin);
+const EarthSpinContainer = connect(mapStateToProps)(EarthSpin);
 
 export default EarthSpinContainer;

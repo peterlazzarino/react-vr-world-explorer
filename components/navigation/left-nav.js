@@ -8,7 +8,7 @@ import {
 } from 'react-vr';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { spinTo } from "../../redux/modules/earth";
+import { selectLocation } from "../../redux/modules/nav";
 import GazeAwareButton from "../../components/buttons/gazeawarebutton";
 
 const mapStateToProps = (state, ownProps) => {
@@ -16,7 +16,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    return bindActionCreators({ spinTo }, dispatch);
+    return bindActionCreators({ selectLocation }, dispatch);
 }
 
 class LeftNavigation extends React.Component{
@@ -24,9 +24,8 @@ class LeftNavigation extends React.Component{
         super(props);
         this.navigate = this.navigate.bind(this);
     }
-    navigate(coordinates){
-        console.log(coordinates)
-        this.props.spinTo(coordinates);
+    navigate(location){
+        this.props.selectLocation(location);
     }
     render(){
         const buttonStyle = { paddingHorizontal:.05, width: 1, height: .15, marginBottom:.05, backgroundColor: "white" };
@@ -55,11 +54,12 @@ class LeftNavigation extends React.Component{
                     {this.props.locations.map((location) => {
                             return (
                                 <GazeAwareButton 
+                                    key={`nav-${location.name}`}
                                     text={location.name}
                                     textStyle={{color: "black"}} 
                                     buttonStyle={buttonStyle}
                                     selectHandler={() => {
-                                        this.navigate(location.coordinates);
+                                        this.navigate(location);
                                     }}
                                 />      
                             )              

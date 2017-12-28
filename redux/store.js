@@ -1,9 +1,7 @@
-import earthReducer from "./modules/earth";
 import navReducer from "./modules/nav";
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
 const reducers = {
-    earthReducer: earthReducer,
     navReducer: navReducer
 }
 
