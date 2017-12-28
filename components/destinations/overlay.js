@@ -41,15 +41,30 @@ class Overlay extends React.Component{
             <EarthSpin>
                 {firstTour.locations.map((location, idx) => {
                     return (
-                        <View key={`${location.name}-${idx}`} style={{
-                            position:"absolute"
-                        }}>
+                        <View key={`${location.location}-${idx}`} style={{
+                            position:"absolute" ,
+                            transform: [
+                                {  translate: this.to3dLocation(location.coordinates) }
+                            ]
+                        }}> 
                             <Sphere radius={.004} style={{
-                                color:"red",
-                                transform: [
-                                    {  translate:  this.to3dLocation(location.coordinates) }
-                                ]
+                                color:"white"                                
                             }} />
+                            <Text style={{
+                                position:"absolute",
+                                fontSize: .05,
+                                transform: [{
+                                    rotateY: 100,
+                                }, {
+                                    rotateX: -50
+                                }, {
+                                    translateX: -.05
+                                }, {
+                                    translateY: .05
+                                }, {
+                                    translateZ: .2
+                                }]
+                                }}>{location.location}</Text>
                         </View>
                     )
                 })}

@@ -1,12 +1,12 @@
 const lpr = { 
     locations: [ {
-        location: "london",
+        location: "Rome",
         coordinates: { lat: 41.9128, lon: 12.4964 }
     }, {
-        location: "paris",
+        location: "Paris",
         coordinates: { lat: 48.8566, lon: 2.3522 }
     }, {
-        location: "rome",
+        location: "London",
         coordinates: { lat: 51.5074, lon: 0.1278 }
     }]
 };
