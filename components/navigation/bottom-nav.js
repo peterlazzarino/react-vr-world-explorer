@@ -8,7 +8,7 @@ import {
 } from 'react-vr';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { selectLocation } from "../../redux/modules/nav";
+import { removeLocation } from "../../redux/modules/nav";
 import GazeAwareButton from "../../components/buttons/gazeawarebutton";
 
 const mapStateToProps = (state, ownProps) => {
@@ -16,29 +16,25 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    return bindActionCreators({ selectLocation }, dispatch);
+    return bindActionCreators({ removeLocation }, dispatch);
 }
 
-class LeftNavigation extends React.Component{
+class BottomNav extends React.Component{
     constructor(props) {
         super(props);
-        this.navigate = this.navigate.bind(this);
         this.changeTransparency = this.changeTransparency.bind(this);
         this.show = this.show.bind(this);
         this.hide = this.hide.bind(this);
         this.state = {
-            opacityValue: new Animated.Value(1)
+            opacityValue: new Animated.Value(0)
         };
-    }
-    navigate(location){
-        this.props.selectLocation(location);
     }
     componentWillReceiveProps(next){
         if(!this.props.selectedLocation && next.selectedLocation){
-            this.hide();
-        }
-        if(!next.selectedLocation && this.props.selectLocation){
             this.show();
+        }
+        if(!next.selectedLocation){
+            this.hide();
         }         
     }
     changeTransparency(to){
@@ -63,12 +59,11 @@ class LeftNavigation extends React.Component{
                 <View style={{    
                     position:"absolute",
                     backgroundColor: "green",
-                    padding: .55,
-                    width:1,
-                    paddingBottom: .6,
+                    padding: .13,
+                    width:1.1,
                     opacity:.5,
                     transform: [
-                        { translate: [-2.5, .6, -3.01]  },
+                        { translate: [-.55, -.7, -1.51]  },
                     ],
                 }}>
                 </View>
@@ -76,30 +71,24 @@ class LeftNavigation extends React.Component{
                     position:"absolute",
                     padding: .05,
                     transform: [
-                        { translate: [-2.5, .6, -3]  },
+                        { translate: [-.55, -.7, -1.51]  },
                     ], 
-                }}>
-                    <Text style={{ marginBottom:.05 }}>Explore a country!</Text>                    
-                    {this.props.locations.map((location) => {
-                            return (
-                                <GazeAwareButton 
-                                    key={`nav-${location.name}`}
-                                    text={location.name}
-                                    textStyle={{color: "black"}} 
-                                    buttonStyle={buttonStyle}
-                                    selectHandler={() => {
-                                        this.navigate(location);
-                                    }}
-                                />      
-                            )              
-                        }
-                    )}
+                }}>       
+                    <GazeAwareButton 
+                        key={`nav-${location.name}`}
+                        text={"<-- Go Back"}
+                        textStyle={{color: "black"}} 
+                        buttonStyle={buttonStyle}
+                        selectHandler={() => {
+                            this.props.removeLocation();
+                        }}
+                    />      
                 </View>
             </Animated.View>
         )
     }
 }
 
-const NavigationContainer = connect(mapStateToProps, mapDispatchToProps)(LeftNavigation);
+const NavigationContainer = connect(mapStateToProps, mapDispatchToProps)(BottomNav);
 
 export default NavigationContainer;

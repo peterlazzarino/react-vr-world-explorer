@@ -19,10 +19,17 @@ const initialState = {
 }
 
 const ActionType = {
-    SELECT_LOCATION: 'SELECT_LOCATION'
+    SELECT_LOCATION: 'SELECT_LOCATION',
+    REMOVE_LOCATION: 'REMOVE_LOCATION'
 }
 
- 
+export const removeLocation = () => {
+    return {
+        type: ActionType.REMOVE_LOCATION,
+        data: undefined
+    }
+} 
+
 export const selectLocation = (location) => {
     return {
         type: ActionType.SELECT_LOCATION,
@@ -36,6 +43,11 @@ export default function navReducer(state = initialState, action) {
             return Object.assign({}, state, {
                 selectedLocation: action.data,
                 tours: getByLocation(action.data.name)
+            });
+        case ActionType.REMOVE_LOCATION:
+            return Object.assign({}, state, {
+                selectedLocation: undefined,
+                tours: undefined
             });
         default: 
             return state;

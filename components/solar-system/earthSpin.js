@@ -28,7 +28,7 @@ class EarthSpin extends React.Component{
         return lon + this.primeMeridianOffset;
     }
     componentWillReceiveProps(next){
-        if(this.props.selectedLocation != next.selectedLocation){
+        if(this.props.selectedLocation != next.selectedLocation && next.selectedLocation){
             this.spin(this.mapLatitude(next.selectedLocation.coordinates.lat), this.mapLongitude(next.selectedLocation.coordinates.lon));
         }
     }
@@ -49,7 +49,7 @@ class EarthSpin extends React.Component{
             <Animated.View style={{
                 transform: [
                     { rotateX: this.state.bounceYValue},
-                    { rotateY: this.state.bounceXValue}
+                    { rotateY: this.state.bounceXValue},
                 ],
             }}>
                 {this.props.children}
