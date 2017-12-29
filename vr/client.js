@@ -1,5 +1,4 @@
-import RCTLine from "../native-views/RCTLine";
-
+import { RCTLine } from "react-vr-line";
 import { VRInstance } from 'react-vr-web';
 
 function init(bundle, parent, options) {

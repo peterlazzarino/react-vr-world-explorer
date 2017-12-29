@@ -6,7 +6,7 @@ import {
 } from 'react-vr';
 import * as THREE from 'three';
 import { connect } from "react-redux";
-import VRLine from "../line/line";
+import { VRLine } from "react-vr-line";
 
 const mapStateToProps = (state, ownProps) => {
     return state.navReducer;
