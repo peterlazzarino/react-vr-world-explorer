@@ -6,6 +6,7 @@ import {
 } from 'react-vr';
 import * as THREE from 'three';
 import { connect } from "react-redux";
+import VRLine from "../line/line";
 
 const mapStateToProps = (state, ownProps) => {
     return state.navReducer;
@@ -43,11 +44,22 @@ class Overlay extends React.Component{
         return (
             <View>
                 {firstTour.locations.map((location, idx) => {
+                    const location3dCoords = this.to3dLocation(location.coordinates);
+                    const nextLocation = firstTour.locations[idx + 1];
+                    let nextLocationTranslation = [];
+                    if(nextLocation){
+                        let nextLocation3dCoords = this.to3dLocation(nextLocation.coordinates);
+                        nextLocationTranslation = [
+                            nextLocation3dCoords[0] - location3dCoords[0],
+                            nextLocation3dCoords[1] - location3dCoords[1], 
+                            nextLocation3dCoords[2] - location3dCoords[2]
+                        ]
+                    }
                     return (
                         <View key={`${location.location}-${idx}`} style={{
                             position:"absolute" ,
                             transform: [
-                                {  translate: this.to3dLocation(location.coordinates) }
+                                {  translate: location3dCoords }
                             ]
                         }}> 
                             <Sphere radius={.008} heightSegments={15} widthSegments={15} style={{
@@ -71,7 +83,10 @@ class Overlay extends React.Component{
                                 }, {
                                     translateZ: .2
                                 }]
-                                }}>{location.location}</Text>
+                            }}>
+                                {location.location}
+                            </Text>
+                            {nextLocation && <VRLine style={{ position:"absolute" }} vertices={[[0,0,0], nextLocationTranslation]} />}
                         </View>
                     )
                 })}

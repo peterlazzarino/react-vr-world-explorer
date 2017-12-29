@@ -25,7 +25,7 @@ const VRLineComponent = createReactClass({
         uiViewClassName: "Line",
         validAttributes: {
             ...ReactNativeViewAttributes.RCTView,
-            intensity: true,
+            vertices: true,
         }
     },
     getDefaultProps: function() {
