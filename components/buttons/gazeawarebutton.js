@@ -57,11 +57,9 @@ export default class GazeAwareButton extends React.Component{
         const buttonHeight = buttonStyle.height || this.defaultHeight;
         const finalButtonStyle = Object.assign({}, buttonStyle, { width: buttonWidth, height: buttonHeight });
         return (
-            <View>
+            <View onEnter={this.onEnter} onExit={this.onExit} >
                 <VrButton 
                     style={finalButtonStyle} 
-                    onEnter={this.onEnter} 
-                    onExit={this.onExit} 
                     onClick={this.finalizeSelection}
                 >
                     <Animated.View style={{ 
