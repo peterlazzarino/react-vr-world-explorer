@@ -77,7 +77,7 @@ class BottomNav extends React.Component{
                     <GazeAwareButton 
                         key={`nav-${location.name}`}
                         text={"<-- Go Back"}
-                        textStyle={{color: "black"}} 
+                        textStyle={{color: "black", textAlign: "center"}} 
                         buttonStyle={buttonStyle}
                         selectHandler={() => {
                             this.props.removeLocation();
