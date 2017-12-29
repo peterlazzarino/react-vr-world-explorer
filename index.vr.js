@@ -10,6 +10,7 @@ import {
   View,
 } from 'react-vr';
 import { Provider } from "react-redux";
+import VRLine from "./components/line/line";
 import Earth from "./components/solar-system/earthContainer";
 import Sun from "./components/sun/sun";
 import Moon from "./components/moon/moon";
@@ -23,6 +24,7 @@ export default class world_explorer extends React.Component {
     return (
       <Provider store={store}>
         <View>
+          <VRLine />
           <LeftNavigation />
           <BottomNav />         
           <Earth earthRadius={earthRadius} />

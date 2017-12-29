@@ -4,6 +4,7 @@ import {
     Text,
     Sphere
 } from 'react-vr';
+import * as THREE from 'three';
 import { connect } from "react-redux";
 
 const mapStateToProps = (state, ownProps) => {

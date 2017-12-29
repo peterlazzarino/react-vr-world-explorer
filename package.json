@@ -10,10 +10,11 @@
     "test": "jest"
   },
   "dependencies": {
+    "create-react-class": "15.6.2",
     "ovrui": "~2.0.0",
+    "prop-types": "15.6.0",
     "react": "16.0.0",
     "react-native": "~0.48.0",
-    "prop-types": "15.6.0",
     "react-redux": "^5.0.6",
     "react-vr": "~2.0.0",
     "react-vr-web": "~2.0.0",

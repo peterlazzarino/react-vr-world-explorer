@@ -1,16 +1,16 @@
 import React from "react";
+import createReactClass from "create-react-class";
 import NativeMethodsMixin from 'NativeMethodsMixin';
 import PropTypes from 'prop-types';
-import NativeMethodsMixin from 'NativeMethodsMixin';
 import StyleSheetPropType from 'StyleSheetPropType';
 import LayoutAndTransformPropTypes from 'LayoutAndTransformPropTypes';
 import ReactNativeViewAttributes from 'ReactNativeViewAttributes';
+import { requireNativeComponent } from 'react-native'; 
+import {
+    View
+} from 'react-vr';
 
-const VRLine = requireNativeComponent('VRLine', VRLine, {
-    nativeOnly: {},
-});
-
-export default class VRLineComponent extends React.createClass({
+const VRLineComponent = createReactClass({
     /* 
         Using createClass syntax for mixin support. 
         This is the recommended way to create native modules in react-vr currently
@@ -34,8 +34,15 @@ export default class VRLineComponent extends React.createClass({
     render: function() {
       return (
         <VRLine
-          {...props}>
+          {...this.props}>
         </VRLine>
       );
-    }
+    },
 });
+
+
+const VRLine = requireNativeComponent('VRLine', VRLineComponent, {
+    nativeOnly: {},
+});
+
+export default VRLineComponent;
