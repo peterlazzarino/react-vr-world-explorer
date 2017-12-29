@@ -20,12 +20,14 @@ const VRLineComponent = createReactClass({
       ...View.propTypes,
       style: StyleSheetPropType(LayoutAndTransformPropTypes),
       vertices: PropTypes.array,
+      color: PropTypes.string
     },
     viewConfig: {
         uiViewClassName: "Line",
         validAttributes: {
             ...ReactNativeViewAttributes.RCTView,
             vertices: true,
+            color: true
         }
     },
     getDefaultProps: function() {

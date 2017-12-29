@@ -45,8 +45,10 @@ class Overlay extends React.Component{
             <View>
                 {firstTour.locations.map((location, idx) => {
                     const location3dCoords = this.to3dLocation(location.coordinates);
+                    const relativePositionOfLine = [0,0,0];
                     const nextLocation = firstTour.locations[idx + 1];
                     let nextLocationTranslation = [];
+                    let midPointTranslation = [];
                     if(nextLocation){
                         let nextLocation3dCoords = this.to3dLocation(nextLocation.coordinates);
                         nextLocationTranslation = [
@@ -59,7 +61,7 @@ class Overlay extends React.Component{
                         <View key={`${location.location}-${idx}`} style={{
                             position:"absolute" ,
                             transform: [
-                                {  translate: location3dCoords }
+                                { translate: location3dCoords },
                             ]
                         }}> 
                             <Sphere radius={.008} heightSegments={15} widthSegments={15} style={{
@@ -86,7 +88,9 @@ class Overlay extends React.Component{
                             }}>
                                 {location.location}
                             </Text>
-                            {nextLocation && <VRLine style={{ position:"absolute" }} vertices={[[0,0,0], nextLocationTranslation]} />}
+                            {nextLocation && 
+                                <VRLine color="rgb(255, 0, 0)" vertices={[relativePositionOfLine, nextLocationTranslation]} />
+                            }
                         </View>
                     )
                 })}
