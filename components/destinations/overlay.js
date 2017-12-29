@@ -53,7 +53,8 @@ class Overlay extends React.Component{
                                 color:"yellow"                                
                             }} />
                             <Text style={{
-                                textAlign: "center", backgroundColor: '#777879',
+                                textAlign: "center", 
+                                backgroundColor: '#777879',
                                 fontWeight: "400",
                                 color:"white",
                                 position:"absolute",
