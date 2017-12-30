@@ -4,7 +4,7 @@ import {
     Text,
     Sphere
 } from 'react-vr';
-import * as THREE from 'three';
+import { to3dLocation, midpoint, getRelativeLineVertex } from "../../helpers/coordinateHelpers";
 import { connect } from "react-redux";
 import VRLine from "../line/line";
 
@@ -15,34 +15,9 @@ const mapStateToProps = (state, ownProps) => {
 class Overlay extends React.Component{
     constructor(){
         super();
-        this.to3dLocation = this.to3dLocation.bind(this);
-        this.getRelativeLineVertex = this.getRelativeLineVertex.bind(this);
-    }
-    // clean this up, move somewhere else
-    to3dLocation(coords){
-        const modLonRotation = 90;
-        const modLon = coords.lon + modLonRotation;
-        const rad = this.props.sphereRadius;
-        var cosLat = Math.cos(coords.lat * Math.PI / 180.0);
-        var sinLat = Math.sin(coords.lat * Math.PI / 180.0);
-        var cosLon = Math.cos(modLon * Math.PI / 180.0);
-        var sinLon = Math.sin(modLon * Math.PI / 180.0);
-        return [
-            rad * cosLat * sinLon, 
-            rad * sinLat,
-            rad * cosLat * cosLon
-        ];
     }
     getYRotationForLocation(location){
         return location.coordinates.lon + 90;
-    }
-    getRelativeLineVertex(location3dCoords, nextLocation){
-        let nextLocation3dCoords = this.to3dLocation(nextLocation.coordinates);
-        return [
-            nextLocation3dCoords[0] - location3dCoords[0],
-            nextLocation3dCoords[1] - location3dCoords[1], 
-            nextLocation3dCoords[2] - location3dCoords[2]
-        ]
     }
     render(){   
         const { tours } = this.props;     
@@ -53,11 +28,13 @@ class Overlay extends React.Component{
         return (
             <View>
                 {firstTour.locations.map((location, idx) => {
-                    const location3dCoords = this.to3dLocation(location.coordinates);
+                    const location3dCoords = to3dLocation(location.coordinates, this.props.sphereRadius, 90);
                     let nextLocationTranslation = [];
+                    let midpointTranslation = [];
                     const nextLocation = firstTour.locations[idx + 1];
                     if(nextLocation){
-                        nextLocationTranslation = this.getRelativeLineVertex(location3dCoords, nextLocation);
+                        nextLocationTranslation = getRelativeLineVertex(location3dCoords, nextLocation, this.props.sphereRadius);
+                        midpointTranslation = getRelativeLineVertex(location3dCoords, midpoint(location.coordinates, nextLocation.coordinates, .5), this.props.sphereRadius + .01);
                     }
                     return (
                         <View key={`${location.location}-${idx}`} style={{
@@ -67,7 +44,7 @@ class Overlay extends React.Component{
                             ]
                         }}> 
                             <Sphere radius={.008} heightSegments={15} widthSegments={15} style={{
-                                color:"yellow"                                
+                                color:"green"                                
                             }} />
                             <Text style={{
                                 textAlign: "center", 
@@ -91,7 +68,7 @@ class Overlay extends React.Component{
                                 {location.location}
                             </Text>
                             {nextLocation && 
-                                <VRLine color="rgb(255, 0, 0)" vertices={[[0,0,0], nextLocationTranslation]} />
+                                <VRLine color="rgb(255, 255, 255)" vertices={[[0,0,0], midpointTranslation, nextLocationTranslation]} />
                             }
                         </View>
                     )
