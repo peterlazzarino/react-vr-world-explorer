@@ -41,14 +41,14 @@ class EarthContainer extends React.Component{
         this.changeZoomLevel(-4);
     }
     zoomIn(){
-        this.changeZoomLevel(-3);
+        this.changeZoomLevel(-2.75);
     }
     render(){
         return(
             <Animated.View style={{
                 transform: [
                   { translateX: 0  },
-                  { translateY: -.2 },
+                  { translateY: 0 },
                   { translateZ: this.state.translateZVal}
                 ]
             }}>
