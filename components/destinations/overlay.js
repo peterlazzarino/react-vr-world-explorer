@@ -15,6 +15,20 @@ const mapStateToProps = (state, ownProps) => {
 class Overlay extends React.Component{
     constructor(){
         super();
+        this.calculateOverlayVertices = this.calculateOverlayVertices.bind(this);
+    }
+    calculateOverlayVertices(location, location3dCoords, nextLocation){
+        //Move this to a separate component
+        const firstVertex = [0,0,0];
+        const midPointVertices = [];
+        //0,0,0 so it is relative to the already absolute positioned container it is inside of.
+        for(let i = 1; i <= 4; i++){
+            const pointLocation = i * .2;
+            const midPointCoords = midpoint(location.coordinates, nextLocation.coordinates, pointLocation);
+            midPointVertices.push(getRelativeLineVertex(location3dCoords, midPointCoords, this.props.sphereRadius));
+        }
+        const lastvertex = getRelativeLineVertex(location3dCoords, nextLocation, this.props.sphereRadius);
+        return [firstVertex, ...midPointVertices, lastvertex];
     }
     getYRotationForLocation(location){
         return location.coordinates.lon + 90;
@@ -29,12 +43,10 @@ class Overlay extends React.Component{
             <View>
                 {firstTour.locations.map((location, idx) => {
                     const location3dCoords = to3dLocation(location.coordinates, this.props.sphereRadius, 90);
-                    let nextLocationTranslation = [];
-                    let midpointTranslation = [];
                     const nextLocation = firstTour.locations[idx + 1];
+                    let lineSegments = [];
                     if(nextLocation){
-                        nextLocationTranslation = getRelativeLineVertex(location3dCoords, nextLocation, this.props.sphereRadius);
-                        midpointTranslation = getRelativeLineVertex(location3dCoords, midpoint(location.coordinates, nextLocation.coordinates, .5), this.props.sphereRadius + .01);
+                        lineSegments = this.calculateOverlayVertices(location, location3dCoords, nextLocation);
                     }
                     return (
                         <View key={`${location.location}-${idx}`} style={{
@@ -68,7 +80,7 @@ class Overlay extends React.Component{
                                 {location.location}
                             </Text>
                             {nextLocation && 
-                                <VRLine color="rgb(255, 255, 255)" vertices={[[0,0,0], midpointTranslation, nextLocationTranslation]} />
+                                <VRLine color="rgb(255, 255, 255)" vertices={lineSegments} />
                             }
                         </View>
                     )
