@@ -58,27 +58,38 @@ class Overlay extends React.Component{
                             <Sphere radius={.008} heightSegments={15} widthSegments={15} style={{
                                 color:"green"                                
                             }} />
-                            <Text style={{
-                                textAlign: "center", 
-                                backgroundColor: '#777879',
-                                fontWeight: "400",
-                                color:"white",
+                            <View style={{
                                 position:"absolute",
-                                fontSize: .05,
                                 transform: [{
                                     rotateY: this.getYRotationForLocation(location),
                                 }, {
                                     rotateX: -50
                                 }, {
-                                    translateX: -.05
+                                    translateX: -.09
                                 }, {
                                     translateY: .05
                                 }, {
-                                    translateZ: .2
+                                    translateZ: .1
                                 }]
                             }}>
-                                {location.location}
-                            </Text>
+                                <Text style={{
+                                    textAlign: "center", 
+                                    backgroundColor: '#2b2b2b',
+                                    fontWeight: "400",
+                                    color:"white",
+                                    paddingBottom:.005,
+                                    paddingRight:.02,
+                                    paddingLeft:.02,
+                                    fontSize: .05,
+                                }}>
+                                    {location.location}
+                                </Text>
+                                <Text style={{
+                                    fontSize: .02
+                                }}>
+                                    {location.nights} nights 
+                                </Text>
+                            </View>
                             {nextLocation && 
                                 <VRLine color="rgb(255, 255, 255)" vertices={lineSegments} />
                             }
