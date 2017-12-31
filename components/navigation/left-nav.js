@@ -39,7 +39,7 @@ class LeftNavigation extends React.Component{
         }
         if(!next.selectedLocation && this.props.selectLocation){
             this.show();
-        }         
+        }
     }
     changeTransparency(to){
         Animated.spring(this.state.opacityValue, {
@@ -58,40 +58,40 @@ class LeftNavigation extends React.Component{
         const buttonStyle = { paddingHorizontal:.05, width: 1, height: .15, marginBottom:.05, backgroundColor: "white" };
         return (
             <Animated.View style={{
-                opacity: this.state.opacityValue    
+                opacity: this.state.opacityValue
             }}>
-                <View style={{    
+                <View style={{
                     position:"absolute",
                     backgroundColor: "green",
                     padding: .55,
                     width:1,
-                    paddingBottom: .6,
+                    paddingBottom: .8,
                     opacity:.5,
                     transform: [
                         { translate: [-2.5, .6, -3.01]  },
                     ],
                 }}>
                 </View>
-                <View style={{    
+                <View style={{
                     position:"absolute",
                     padding: .05,
                     transform: [
                         { translate: [-2.5, .6, -3]  },
-                    ], 
+                    ],
                 }}>
-                    <Text style={{ marginBottom:.05 }}>Explore a country!</Text>                    
+                    <Text style={{ marginBottom:.05 }}>Explore a country!</Text>
                     {this.props.locations.map((location) => {
                             return (
-                                <GazeAwareButton 
+                                <GazeAwareButton
                                     key={`nav-${location.name}`}
                                     text={location.name}
-                                    textStyle={{color: "black"}} 
+                                    textStyle={{color: "black"}}
                                     buttonStyle={buttonStyle}
                                     selectHandler={() => {
                                         this.navigate(location);
                                     }}
-                                />      
-                            )              
+                                />
+                            )
                         }
                     )}
                 </View>
