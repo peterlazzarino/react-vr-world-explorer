@@ -1,4 +1,4 @@
-const lpr = { 
+const lpr = {
     locations: [{
         location: "London",
         coordinates: { lat: 51.5074, lon: 0.1278 }
@@ -11,7 +11,7 @@ const lpr = {
     }]
 };
 
-const usa = { 
+const usa = {
     locations: [ {
         location: "NYC",
         coordinates: { lat: 40.7128, lon: -74.0060 }
@@ -21,6 +21,19 @@ const usa = {
     }]
 };
 
+const smb = {
+    locations: [{
+        location: "Barcelona",
+        coordinates: { lat: 41.390205, lon: 2.154007}
+    }, {
+        location: "Madrid",
+        coordinates: { lat: 40.416775, lon: -3.703790}
+    }, {
+        location: "Seville",
+        coordinates: { lat: 37.392529, lon: -5.994072}
+    }]
+}
+
 export const getByLocation = (location) => {
     location = location.toLowerCase();
     switch (location){
@@ -28,5 +41,7 @@ export const getByLocation = (location) => {
             return [lpr];
         case "united states":
             return [usa];
+        case "spain":
+            return [smb];
     }
 }

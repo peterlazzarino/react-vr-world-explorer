@@ -15,6 +15,9 @@ const initialState = {
     },{
         name: "Antarctica",
         coordinates: { lat: -82.8628, lon: -135.0000 }
+    },{
+        name: "Spain",
+        coordinates: { lat: 40.416775, lon: -3.703790 }
     }]
 }
 
@@ -28,7 +31,7 @@ export const removeLocation = () => {
         type: ActionType.REMOVE_LOCATION,
         data: undefined
     }
-} 
+}
 
 export const selectLocation = (location) => {
     return {
@@ -37,7 +40,7 @@ export const selectLocation = (location) => {
     }
 }
 
-export default function navReducer(state = initialState, action) { 
+export default function navReducer(state = initialState, action) {
     switch(action.type){
         case ActionType.SELECT_LOCATION:
             return Object.assign({}, state, {
@@ -49,7 +52,7 @@ export default function navReducer(state = initialState, action) {
                 selectedLocation: undefined,
                 tours: undefined
             });
-        default: 
+        default:
             return state;
     }
 }
