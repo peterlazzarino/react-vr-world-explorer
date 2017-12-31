@@ -47,7 +47,7 @@ class EarthContainer extends React.Component{
         return(
             <Animated.View style={{
                 transform: [
-                  { translateX: 0  },
+                  { translateX: 0 },
                   { translateY: 0 },
                   { translateZ: this.state.translateZVal}
                 ]
