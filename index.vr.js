@@ -12,6 +12,7 @@ import {
 import { Provider } from "react-redux";
 import Earth from "./components/solar-system/earthContainer";
 import Sun from "./components/sun/sun";
+import VRLine from "react-vr-line";
 import Moon from "./components/moon/moon";
 import BottomNav from "./components/navigation/bottom-nav";
 import LeftNavigation from "./components/navigation/left-nav";
