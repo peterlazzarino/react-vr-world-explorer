@@ -18,16 +18,15 @@ class EarthContainer extends React.Component{
         this.state = {
             translateZVal: new Animated.Value(-4)
         }
-        this.zoomIn = this.zoomIn.bind(this);
-        this.zoomOut = this.zoomOut.bind(this);
+        this.zoom = this.zoom.bind(this);
         this.changeZoomLevel = this.changeZoomLevel.bind(this);
     }
     componentWillReceiveProps(next){
         if(!this.props.selectedLocation && next.selectedLocation){
-            this.zoomIn();
+            this.zoom(next.zoomLevel);
         }
         if(!next.selectedLocation){
-            this.zoomOut();
+            this.zoom(-4);
         }         
     }
     changeZoomLevel(to){
@@ -37,11 +36,8 @@ class EarthContainer extends React.Component{
             tension: 4
         }).start();
     }
-    zoomOut(){
-        this.changeZoomLevel(-4);
-    }
-    zoomIn(){
-        this.changeZoomLevel(-2.75);
+    zoom(level){
+        this.changeZoomLevel(level);
     }
     render(){
         return(

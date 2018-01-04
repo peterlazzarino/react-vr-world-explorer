@@ -25,11 +25,11 @@ class EarthSpin extends React.Component{
         return lat + this.equatorOffset;
     }
     mapLongitude(lon){
-        return lon + this.primeMeridianOffset;
+        return (lon >= 0 ? -lon : Math.abs(lon)) + this.primeMeridianOffset;
     }
     componentWillReceiveProps(next){
         if(this.props.selectedLocation != next.selectedLocation && next.selectedLocation){
-            this.spin(this.mapLatitude(next.selectedLocation.coordinates.lat), this.mapLongitude(next.selectedLocation.coordinates.lon));
+            this.spin(this.mapLatitude(next.focalPoint.coordinates.lat), this.mapLongitude(next.focalPoint.coordinates.lon));
         }
     }
     spin(lat, lon){
