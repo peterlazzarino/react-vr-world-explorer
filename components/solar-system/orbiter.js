@@ -6,7 +6,8 @@ import {
     Animated
 } from 'react-vr';
 import { Easing } from 'react-native';
-import SpaceSphere from "./spaceSphere"
+import SpaceSphere from "./spaceSphere";
+import { overlayLonOffset } from "../../consts/rotationOffset";
 
 class Orbiter extends React.Component{
     constructor(props) {
@@ -43,7 +44,7 @@ class Orbiter extends React.Component{
                     position:"absolute",
                     transform: [
                         { rotateY: this.state.bounceValue},
-                        { translate: [0, 0, 90]  }, 
+                        { translate: [0, 0, overlayLonOffset]  }, 
                     ]                
                 }}>
                     <SpaceSphere 
