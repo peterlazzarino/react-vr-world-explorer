@@ -29,14 +29,60 @@ const usa = {
 const smb = {
     locations: [{
         location: "Barcelona",
+        meals: {
+            dinner: 2,
+            breakfast: 2,
+            lunch: 2
+        },
+        days: [{
+            number: 1,
+            description: "This is a test!"
+        }, {
+            number: 2,
+            description: "This is a test!"
+        }],
         coordinates: { lat: 41.390205, lon: 2.154007}
     }, {
         location: "Madrid",
+        meals: {
+            dinner: 2,
+            breakfast: 2,
+            lunch: 2
+        },
+        days: [{
+            number: 3,
+            description: "This is a test!"
+        }, {
+            number: 4,
+            description: "This is a test!"
+        }],
         coordinates: { lat: 40.416775, lon: -3.703790}
     }, {
         location: "Seville",
+        meals: {
+            dinner: 2,
+            breakfast: 2,
+            lunch: 2
+        },
+        days: [{
+            number: 5,
+            description: "This is a test!"
+        }, {
+            number: 6,
+            description: "This is a test!"
+        }],
         coordinates: { lat: 37.392529, lon: -5.994072}
     }]
+}
+
+const ice = {
+    locations: [{
+        location: "Reykjavik",
+        coordinates: { lat: 64.1333328, lon: -21.93332960, }
+    }, {
+        location: "Húsafell",
+        coordinates: { lat: 64.699512, lon: -20.870392, }
+    }, ]
 }
 
 export const getByLocation = (location) => {
@@ -48,5 +94,7 @@ export const getByLocation = (location) => {
             return [usa];
         case "spain":
             return [smb];
+        case "iceland":
+            return [ice];
     }
 }

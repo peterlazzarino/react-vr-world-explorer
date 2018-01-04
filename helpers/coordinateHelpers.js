@@ -18,6 +18,18 @@ export const midpoint = (coord1, coord2, percent) => {
     return midpoint;
 }
 
+export const distanceBetweenPoints = (coord1, coord2, radius) => {
+    const R = radius; 
+    const φ1 = toRadians(coord1.lat);
+    const φ2 = toRadians(coord2.lat);
+    const Δφ = toRadians(coord2.lat - coord1.lat);
+    const Δλ = toRadians(coord2.lon - coord1.lon);
+    const a = Math.sin(Δφ/2) * Math.sin(Δφ/2) + Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ/2) * Math.sin(Δλ/2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    const d = R * c;
+    return d;
+}
+
 export const toRadians = (angle) => {
     return angle * (Math.PI / 180);
 }

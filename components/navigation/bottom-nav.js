@@ -63,7 +63,7 @@ class BottomNav extends React.Component{
                     width:1.1,
                     opacity:.5,
                     transform: [
-                        { translate: [-.55, -.5, -1]  },
+                        { translate: [-.55, -.5, -.5]  },
                     ],
                 }}>
                 </View>
@@ -71,7 +71,7 @@ class BottomNav extends React.Component{
                     position:"absolute",
                     padding: .05,
                     transform: [
-                        { translate: [-.55, -.5, -1]  },
+                        { translate: [-.55, -.5, -.5]  },
                     ], 
                 }}>       
                     <GazeAwareButton 
