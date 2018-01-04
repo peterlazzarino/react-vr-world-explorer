@@ -66,7 +66,6 @@ export default class GazeAwareButton extends React.Component{
                         width: this.state.gazeProgressMeter, 
                         position:"absolute", 
                         height: buttonHeight, 
-                        opacity: .7,
                         backgroundColor: progressColor
                     }} />
                     <Text 
