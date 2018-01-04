@@ -9,6 +9,7 @@ import {
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { removeLocation } from "../../redux/modules/nav";
+import { removeTourLocation } from "../../redux/modules/overlay";
 import GazeAwareButton from "../../components/buttons/gazeawarebutton";
 
 const mapStateToProps = (state, ownProps) => {
@@ -16,7 +17,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    return bindActionCreators({ removeLocation }, dispatch);
+    return bindActionCreators({ removeLocation, removeTourLocation }, dispatch);
 }
 
 class BottomNav extends React.Component{
@@ -63,7 +64,7 @@ class BottomNav extends React.Component{
                     width:1.1,
                     opacity:.5,
                     transform: [
-                        { translate: [-.55, -.5, -.5]  },
+                        { translate: [-.5,-.8,1.4]  },
                     ],
                 }}>
                 </View>
@@ -71,7 +72,7 @@ class BottomNav extends React.Component{
                     position:"absolute",
                     padding: .05,
                     transform: [
-                        { translate: [-.55, -.5, -.5]  },
+                        { translate: [-.5,-.8,1.4]  },
                     ], 
                 }}>       
                     <GazeAwareButton 
@@ -81,6 +82,7 @@ class BottomNav extends React.Component{
                         buttonStyle={buttonStyle}
                         selectHandler={() => {
                             this.props.removeLocation();
+                            this.props.removeTourLocation();
                         }}
                     />      
                 </View>

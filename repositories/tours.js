@@ -1,15 +1,48 @@
 const lpr = {
     locations: [{
         location: "London",
-        nights: 2,
+        meals: {
+            dinner: 2,
+            breakfast: 2,
+            lunch: 2
+        },
+        days: [{
+            number: 1,
+            description: "This is a test!"
+        }, {
+            number: 2,
+            description: "This is a test!"
+        }],
         coordinates: { lat: 51.5074, lon: 0.1278 }
     }, {
         location: "Paris",
-        nights: 2,
+        meals: {
+            dinner: 2,
+            breakfast: 2,
+            lunch: 2
+        },
+        days: [{
+            number: 3,
+            description: "This is a test!"
+        }, {
+            number: 4,
+            description: "This is a test!"
+        }],
         coordinates: { lat: 48.8566, lon: 2.3522 }
     }, {
         location: "Rome",
-        nights:2,
+        meals: {
+            dinner: 2,
+            breakfast: 2,
+            lunch: 2
+        },
+        days: [{
+            number: 5,
+            description: "This is a test!"
+        }, {
+            number: 6,
+            description: "This is a test!"
+        }],
         coordinates: { lat: 41.9128, lon: 12.4964 }
     }]
 };
@@ -17,11 +50,39 @@ const lpr = {
 const usa = {
     locations: [ {
         location: "NYC",
-        nights:3,
+        meals: {
+            dinner: 2,
+            breakfast: 2,
+            lunch: 2
+        },
+        days: [{
+            number: 1,
+            description: "This is a test!"
+        }, {
+            number: 2,
+            description: "This is a test!"
+        }, {
+            number: 3,
+            description: "This is a test!"
+        }],
         coordinates: { lat: 40.7128, lon: -74.0060 }
     }, {
         location: "Kansas",
-        nights:1,
+        meals: {
+            dinner: 2,
+            breakfast: 2,
+            lunch: 2
+        },
+        days: [{
+            number: 3,
+            description: "This is a test!"
+        }, {
+            number: 4,
+            description: "This is a test!"
+        }, {
+            number: 5,
+            description: "This is a test!"
+        }],
         coordinates: { lat: 39.0119, lon: -98.4842 }
     }]
 };
@@ -78,9 +139,33 @@ const smb = {
 const ice = {
     locations: [{
         location: "Reykjavik",
+        meals: {
+            dinner: 2,
+            breakfast: 2,
+            lunch: 2
+        },
+        days: [{
+            number: 5,
+            description: "This is a test!"
+        }, {
+            number: 6,
+            description: "This is a test!"
+        }],
         coordinates: { lat: 64.1333328, lon: -21.93332960, }
     }, {
         location: "Húsafell",
+        meals: {
+            dinner: 2,
+            breakfast: 2,
+            lunch: 2
+        },
+        days: [{
+            number: 5,
+            description: "This is a test!"
+        }, {
+            number: 6,
+            description: "This is a test!"
+        }],
         coordinates: { lat: 64.699512, lon: -20.870392, }
     }, ]
 }

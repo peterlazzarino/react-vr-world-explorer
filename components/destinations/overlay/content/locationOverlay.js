@@ -5,20 +5,22 @@ import {
     Sphere
 } from 'react-vr';
 import LocationName from "./locationName";
-import { selectLocation } from "../../../../redux/modules/overlay";
+import LocationPanel from "./locationPanel";
+import { selectTourLocation } from "../../../../redux/modules/overlay";
 import styles from "../style";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state, ownProps) => {
-    const isSelected = state.overlayReducer.selectedTourLocation == ownProps.location.location;
+    const stateLocation = state.overlayReducer.selectedTourLocation;
+    const isSelected = stateLocation && stateLocation.location == ownProps.location.location;
     return {
         isSelected: isSelected
     };
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    return bindActionCreators({ selectLocation }, dispatch);
+    return bindActionCreators({ selectTourLocation }, dispatch);
 }
 
 class LocationOverLay extends React.Component{
@@ -27,7 +29,7 @@ class LocationOverLay extends React.Component{
         this.selectLocation = this.selectLocation.bind(this);
     }
     selectLocation(){
-        this.props.selectLocation(this.props.location.location);
+        this.props.selectTourLocation(this.props.location);
     }
     render(){
         const { location, isSelected } = this.props;

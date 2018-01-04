@@ -5,8 +5,10 @@ import {
   View
 } from 'react-vr';
 import Earth from "../earth/earth";
+import BottomNav from "../navigation/bottom-nav";
 import Moon from "../moon/moon";
 import { connect } from "react-redux";
+import LocationPanel from "../destinations/overlay/content/locationPanel";
 
 const mapStateToProps = (state, ownProps) => {
     return state.navReducer;
@@ -48,8 +50,10 @@ class EarthContainer extends React.Component{
                   { translateZ: this.state.translateZVal}
                 ]
             }}>
-              <Earth scale={this.props.earthRadius} />
-              <Moon />
+                <BottomNav />       
+                <LocationPanel />
+                <Earth scale={this.props.earthRadius} />
+                <Moon />
             </Animated.View>
         );
     }
