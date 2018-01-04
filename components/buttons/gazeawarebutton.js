@@ -22,7 +22,6 @@ export default class GazeAwareButton extends React.Component{
         this.animation;
         this.defaultHeight = .2;
         this.defaultWidth = 1;
-        this.maxViewWidth = props.buttonStyle.width || this.defaultWidth;
         this.state = {
             gazeProgressMeter : new Animated.Value(0),
         }
@@ -32,11 +31,11 @@ export default class GazeAwareButton extends React.Component{
         selectHandler();
     }
     onEnter(){
-        const { selectTimeout } = this.props;
+        const { selectTimeout, buttonStyle } = this.props;
         const timeout = selectTimeout;
         this.interval = setTimeout(this.finalizeSelection, timeout);        
         this.animation = Animated.timing(this.state.gazeProgressMeter, {
-            toValue: this.maxViewWidth,     
+            toValue: buttonStyle.width || this.defaultWidth,     
             duration: timeout
         });
         this.animation.start((anim) => {

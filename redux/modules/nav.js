@@ -51,7 +51,6 @@ export default function navReducer(state = initialState, action) {
             const focalPoint = midpoint(firstLocation, lastLocation, .5);
             const distance = distanceBetweenPoints(firstLocation, lastLocation, 1.5);
             const zoomLevel = calculateZoom(distance);
-            console.log(zoomLevel)
             return Object.assign({}, state, {
                 selectedLocation: action.data,
                 selectedTour: selectedTour,

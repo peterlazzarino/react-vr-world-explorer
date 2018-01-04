@@ -3,7 +3,6 @@ const zoomOffset = 2;
 const maxZoom = 1.9;
 
 export const calculateZoom = (distance) => {
-    console.log("distance" + distance)
     const zoomLevel = distance * zoomRatio + zoomOffset;
     const actualZoom = zoomLevel < maxZoom ? maxZoom : zoomLevel;
     return -(actualZoom);

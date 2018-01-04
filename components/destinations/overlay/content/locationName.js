@@ -6,15 +6,21 @@ import {
 } from 'react-vr';
 import styles from "../style";
 import { overlayLonOffset } from "../../../../consts/rotationOffset";
+import GazeAwareButton from "../../../../components/buttons/gazeawarebutton";
 
 export default class LocationName extends React.Component{
     getYRotationForLocation(location){
-        console.log(location);
         return location.coordinates.lon + overlayLonOffset;
     }
     render(){
-        const { location } = this.props;
-        return (
+        const { location, isSelected, selectCallback } = this.props;
+        const backgroundColor = isSelected ? "green" : "rgba(2, 2, 2, 0.5)"; 
+        const buttonStyle = {  
+            height:.03,
+            width:.1,
+            backgroundColor: backgroundColor
+        };
+        return ( 
             <View style={[
                 styles.textContainer,
                 {transform: [{
@@ -29,10 +35,14 @@ export default class LocationName extends React.Component{
                     translateZ: .05
                 }]}                           
             ]}>
-                <Text style={[styles.locationName]}>
-                    {location.location}
-                </Text>
+                <GazeAwareButton
+                    key={`nav-${location.name}`}
+                    text={location.location}
+                    textStyle={styles.locationName}
+                    buttonStyle={buttonStyle}
+                    selectHandler={selectCallback}
+                />
             </View>
         )
     }
-}
+}  

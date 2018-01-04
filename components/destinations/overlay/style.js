@@ -8,15 +8,13 @@ export default StyleSheet.create({
     },
     textContainer: {
         position: "absolute",
-        textAlign: "center",
-        paddingLeft: .01,
-        paddingRight: .01,
-        backgroundColor: 'rgba(2, 2, 2, 0.5)'
+        height:.02
     },
     locationName: {
         textAlign: "center", 
         fontWeight: "400",
         color:"white",
         fontSize: .02,
+        height:.03
     }
 })
